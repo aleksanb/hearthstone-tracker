@@ -1,4 +1,5 @@
 from player_state import PlayerState
+from utils import p
 
 import re
 import tornado.ioloop
@@ -23,7 +24,7 @@ def parse_log_lines(line):
 	player = match.group('player')
 
 	if player_state.card_drawn(id, cardId or alternate_card_id, player):
-		print("Updated player state")
+		p("Updated player state")
 
 
 def create_log_handler(file_path):

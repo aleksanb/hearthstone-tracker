@@ -1,7 +1,6 @@
 from logparse import create_log_handler
 
 import tornado.web
-import json
 from pathlib import Path
 
 LOG_PATH = 'C:\Program Files (x86)\Hearthstone\Logs\Power.log'
@@ -15,7 +14,8 @@ if __name__ == '__main__':
 	# Create Web Handler
 	class MainHandler(tornado.web.RequestHandler):
 		def get(self):
-			self.write(json.dumps(player_state.players))
+			self.set_header("Access-Control-Allow-Origin", "*")
+			self.write(player_state.get_formatted_players())
 
 	app = tornado.web.Application([
 		(r"/", MainHandler),
