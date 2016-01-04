@@ -1,5 +1,7 @@
 # hearthstone-tracker
 
+![ui-snapshot](https://cloud.githubusercontent.com/assets/1413365/12100788/62fac912-b331-11e5-87fa-89b5f9c3cc84.PNG)
+
 Run backend server with `python server.py`.
 Run frontend server with `python -m http.server` in the `frontend` directory.
 
