@@ -1,14 +1,20 @@
 var CardList = React.createClass({
 	render: function() {
 		return (
-			<div className="cards">
+			<ul className="cards">
 				{
 					this.props.cards.map(function(card) {
-						var cardText = `${card.cost} - ${card.ids.length}x ${card.name} (${card.id})`
-						return <div>{cardText}</div>
+						var inlineCardStyle = {'backgroundImage': `url(https://wow.zamimg.com/images/hearthstone/cards/enus/original/${card.id}.png)`};
+
+						return (
+							<li className='card' data-content={card.ids.length > 1 ? '2x' : null}>
+								<div className="inline-image" style={inlineCardStyle} />
+								<div className="inline-text">{card.name}</div>
+							</li>
+						);
 					})
 				}
-			</div>
+			</ul>
 		);
 	}
 });
@@ -38,7 +44,7 @@ var Players = React.createClass({
 		console.log(this.state)
 		var _this = this;
 		return (
-			<div>{
+			<div className="players">{
 				Object.keys(this.state).map(function(player) {
 					return (
 						<div id={'player-' + player}>
