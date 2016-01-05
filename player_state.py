@@ -36,13 +36,21 @@ class PlayerState:
 	def get_formatted_players(self):
 		output = {}
 
-		for player in self.players:
+		for player in sorted(self.players.keys()):
 			cards = list(self.players[player].values())
 
-			type_blacklist = ('HERO_POWER', 'HERO')
-			filtered_cards = [card for card in cards if card['type'] not in type_blacklist]
+			hero = None
+			heroes = [card for card in cards if card['type'] == 'HERO']
+			if len(heroes) > 0:
+				hero = heroes[0]
+
+			type_whitelist = ('MINION', 'SPELL')
+			filtered_cards = [card for card in cards if card['type'] in type_whitelist]
 			sorted_cards = sorted(filtered_cards, key=lambda card: card['cost'])
 
-			output[player] = sorted_cards
+			output[player] = {
+				'hero': hero,
+				'cards': sorted_cards
+			}
 
 		return output

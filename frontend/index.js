@@ -7,9 +7,9 @@ var CardList = React.createClass({
 						var inlineCardStyle = {'backgroundImage': `url(https://wow.zamimg.com/images/hearthstone/cards/enus/original/${card.id}.png)`};
 
 						return (
-							<li className='card' data-content={card.ids.length > 1 ? '2x' : null}>
+							<li className='card'>
 								<div className="inline-image" style={inlineCardStyle} />
-								<div className="inline-text">{card.name}</div>
+								<div className="inline-text">{`${card.ids.length}x ${card.name}`}</div>
 							</li>
 						);
 					})
@@ -45,11 +45,16 @@ var Players = React.createClass({
 		var _this = this;
 		return (
 			<div className="players">{
-				Object.keys(this.state).map(function(player) {
+				Object.keys(this.state).sort().map(function(playerId) {
+					var player = _this.state[playerId];
+					var heroName = player.hero ? player.hero.name : 'Anonymous';
+					var playerClass = player.hero ? player.hero.playerClass : 'Anonymous';
+
 					return (
-						<div id={'player-' + player}>
-							<h1>Player {player}</h1>
-							<CardList cards={_this.state[player]} />
+						<div id={'player-' + playerId}>
+							<h3>Player {playerId}: {playerClass}</h3>
+							<h1>{heroName}</h1>
+							<CardList cards={player.cards} />
 						</div>
 					)
 				})
