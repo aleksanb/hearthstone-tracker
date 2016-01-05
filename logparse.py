@@ -31,10 +31,22 @@ def create_log_handler(file_path):
 	f = file_path.open(encoding='utf-8')
 	f.seek(0, 2)
 
+	partyvan = {
+		'last_known_size': file_path.stat().st_size
+	}
+
 	def tail():
 		while True:
 			line = f.readline()
 			if not line:
+				current_size = file_path.stat().st_size
+
+				# Has hearthstone sneakily recreated the log file?
+				if current_size < partyvan['last_known_size']:
+					player_state.clear_players()
+					f.seek(0, 0)
+
+				partyvan['last_known_size'] = current_size
 				break
 
 			tornado.ioloop.IOLoop.current().add_callback(

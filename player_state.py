@@ -44,7 +44,7 @@ class PlayerState:
 			if len(heroes) > 0:
 				hero = heroes[0]
 
-			type_whitelist = ('MINION', 'SPELL')
+			type_whitelist = ('MINION', 'SPELL', 'WEAPON')
 			filtered_cards = [card for card in cards if card['type'] in type_whitelist]
 			sorted_cards = sorted(filtered_cards, key=lambda card: card['cost'])
 
