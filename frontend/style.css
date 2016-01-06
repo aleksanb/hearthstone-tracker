@@ -1,13 +1,17 @@
 body {
 	max-width: 100%;
 	font-family: sans-serif;
-	font-size: 24px;
+	font-size: 16px;
 }
 
 ul {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
+}
+
+li {
+	margin: 1.5px 0;
 }
 
 h1 {
@@ -23,17 +27,12 @@ h3 {
 	justify-content: space-around;
 }
 
-.card {
-	border-bottom: 1px #eee;
-	position: relative;
-}
-
 .inline-image {
 	display: inline-block;
-	height: 45px;
-	width: 150px;
-	background-position-x: -76px;
-	background-position-y: -117px;
+	height: 40px;
+	width: 120px;
+	background-position-x: -86px;
+	background-position-y: -109px;
 	background-repeat: no-repeat;
 	vertical-align: middle;
 }
